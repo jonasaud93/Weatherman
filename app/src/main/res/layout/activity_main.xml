@@ -27,7 +27,7 @@
         android:layout_width="fill_parent"
         android:layout_height="321dp"
         android:layout_gravity="center"
-        android:layout_alignEnd="@+id/txtCity"></ListView>
+        android:layout_alignEnd="@+id/txtCity"/>
 
     <LinearLayout
         android:orientation="horizontal"

@@ -1,5 +1,6 @@
 package com.example.jonas.weatherman;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,9 +55,8 @@ public class MainActivity extends AppCompatActivity {
         btnCancel = (Button) findViewById(R.id.btnCancel);
         txtCity = (EditText) findViewById(R.id.txtCity);
         lstWeatherData = (ListView) findViewById(R.id.lstWeatherItems);
-
         weatherDataList = new ArrayList<>();
-        aa = new ArrayAdapter<>(this, R.layout.weather_item, R.id.lblItem, weatherDataList);
+        aa = new ArrayAdapter<String>(this, R.layout.weather_item, R.id.lblItem, weatherDataList);
         lstWeatherData.setAdapter(aa);
 
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -69,11 +70,8 @@ public class MainActivity extends AppCompatActivity {
                         BufferedReader reader = null;
                         StringBuilder sb = new StringBuilder();
                         try {
-
                             reader = new BufferedReader(new InputStreamReader(response.getBody().in()));
-
                             String line;
-
                             try {
                                 while ((line = reader.readLine()) != null) {
                                     sb.append(line);
@@ -90,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
+                        lstWeatherData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Intent intent = new Intent(MainActivity.this, ImageAcitivity.class);
+                                startActivity(intent);
+                            }
+                        });
                     }
 
                     @Override
