@@ -22,6 +22,7 @@ public class ImageAcitivity extends AppCompatActivity {
                 .load("http://www.themanitoban.com/wp-content/uploads/2014/11/Decorative_Sun.png")
                 .placeholder(R.drawable.abc_cab_background_internal_bg)
                 .into(imageView);
+        //no operation
     }
 
     @Override
